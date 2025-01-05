@@ -18,7 +18,7 @@ describe('Plugin test', function () {
     it('extracts all expected body parameters', function () {
         $route = new Route('post', '/api/posts', fn (CreatePostRequestData $dataStub) => response()->noContent());
 
-        $plugin = new Plugin(new DocumentationConfig());
+        $plugin = new Plugin(new DocumentationConfig);
 
         $bodyParameters = collect($plugin(ExtractedEndpointData::fromRoute($route)) ?? [])->mapWithKeys(
             fn (array $parameter, string $key) => [$key => Arr::except($parameter, 'example')]
@@ -53,7 +53,7 @@ describe('Plugin test', function () {
                     'type' => 'string',
                     'description' => '',
                     'nullable' => false,
-                    'enumValues' => array_map(fn (Category $c) => $c->value, Category::cases())
+                    'enumValues' => array_map(fn (Category $c) => $c->value, Category::cases()),
                 ],
                 'authorEmail' => [
                     'name' => 'authorEmail',

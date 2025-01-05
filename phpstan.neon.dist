@@ -1,0 +1,9 @@
+parameters:
+    level: 7
+
+    paths:
+        - infra
+        - src
+
+    databaseMigrationsPath:
+        - domains/Application/database/migrations

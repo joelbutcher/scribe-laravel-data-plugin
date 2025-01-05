@@ -37,3 +37,17 @@ jobs:
 
       - name: Execute tests
         run: ./vendor/bin/pest
+
+  check:
+    if: always()
+
+    needs:
+      - tests
+
+    runs-on: Ubuntu-latest
+
+    steps:
+      - name: Check if all jobs are passing
+        uses: re-actors/alls-green@release/v1
+        with:
+          jobs: ${{ toJSON(needs) }}
